@@ -107,7 +107,7 @@ const Home: React.FC = () => {
   variant="contained"
   fullWidth
   size={isMobile ? 'small' : 'large'}
-  href="/Kumaran_Resume.pdf"
+  href="/assets/documents/resume.pdf"
   target="_blank"
   rel="noopener"
   sx={{

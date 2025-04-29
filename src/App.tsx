@@ -7,6 +7,7 @@ import Skills from './pages/skills/Skills';
 import Experience from './pages/experience/Experience';
 import Projects from './pages/works/Works';
 import Contact from './pages/contact/Contact';
+import Footer from './components/footer/Footer';
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true); // Set dark mode as default ✅
@@ -38,6 +39,7 @@ const App: React.FC = () => {
       <Experience />
       <Projects />
       <Contact />
+      <Footer/>
     </ThemeProvider>
   );
 };

@@ -107,43 +107,45 @@ const Experience: React.FC = () => {
       <Grid container spacing={4} sx={{ position: 'relative', zIndex: 2 }}>
         {experienceList.map((exp, index) => (
           <Grid size={{ xs: 12, md: 6 }} key={index}>
-         <motion.div style={{ position: 'relative', zIndex: 2 }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-            >
-              <Paper
-                elevation={6}
-                sx={{
-                  p: 4,
-                  borderLeft: `6px solid ${theme.palette.primary.main}`,
-                  borderRadius: 3,
-                  height: '100%',
-                  backdropFilter: 'blur(4px)',
-                  backgroundColor: theme.palette.mode === 'dark'
-                    ? 'rgba(30,30,30,0.85)'
-                    : 'rgba(255,255,255,0.9)',
-                  boxShadow: theme.palette.mode === 'dark'
-                    ? '0 10px 30px rgba(0, 0, 0, 0.5)'
-                    : '0 10px 25px rgba(0, 0, 0, 0.1)',
-                  transition: 'transform 0.4s ease, box-shadow 0.4s ease',
-                  '&:hover': {
-                    transform: 'translateY(-5px) scale(1.02)',
-                    boxShadow: theme.palette.mode === 'dark'
-                      ? '0 15px 35px rgba(0, 0, 0, 0.6)'
-                      : '0 15px 30px rgba(0, 0, 0, 0.15)',
-                  },
-                }}
-              >
-                <Typography variant="h6" fontWeight="bold" gutterBottom>
-                  {exp.role}
-                </Typography>
-                <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-                  {exp.company} — {exp.date}
-                </Typography>
-                <Typography variant="body2">{exp.description}</Typography>
-              </Paper>
-            </motion.div>
+         <motion.div
+  style={{ position: 'relative', zIndex: 2 }}
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.3, delay: index * 0.2 }} // Decreased duration from 0.6 to 0.3
+>
+  <Paper
+    elevation={6}
+    sx={{
+      p: 4,
+      borderLeft: `6px solid ${theme.palette.primary.main}`,
+      borderRadius: 3,
+      height: '100%',
+      backdropFilter: 'blur(4px)',
+      backgroundColor: theme.palette.mode === 'dark'
+        ? 'rgba(30,30,30,0.85)'
+        : 'rgba(255,255,255,0.9)',
+      boxShadow: theme.palette.mode === 'dark'
+        ? '0 10px 30px rgba(0, 0, 0, 0.5)'
+        : '0 10px 25px rgba(0, 0, 0, 0.1)',
+      transition: 'transform 0.4s ease, box-shadow 0.4s ease',
+      '&:hover': {
+        transform: 'translateY(-5px) scale(1.02)',
+        boxShadow: theme.palette.mode === 'dark'
+          ? '0 15px 35px rgba(0, 0, 0, 0.6)'
+          : '0 15px 30px rgba(0, 0, 0, 0.15)',
+      },
+    }}
+  >
+    <Typography variant="h6" fontWeight="bold" gutterBottom>
+      {exp.role}
+    </Typography>
+    <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+      {exp.company} — {exp.date}
+    </Typography>
+    <Typography variant="body2">{exp.description}</Typography>
+  </Paper>
+</motion.div>
+
           </Grid>
         ))}
       </Grid>
