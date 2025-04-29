@@ -2,12 +2,11 @@ import React from 'react';
 import { Box, Grid, Typography, Avatar, IconButton, useTheme, Paper } from '@mui/material';
 import { motion } from 'framer-motion';
 import { GitHub, LinkedIn, Email, School, EmojiEvents } from '@mui/icons-material';
-import './about.css'; // your existing css if any
+import "./about.css";
 
 const About: React.FC = () => {
   const theme = useTheme();
 
-  // Animations
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -16,33 +15,6 @@ const About: React.FC = () => {
       transition: { delay: i * 0.2, duration: 0.6 },
     }),
   };
-
-  const fadeInLeft = {
-    hidden: { opacity: 0, x: -60 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  };
-
-  const fadeInRight = {
-    hidden: { opacity: 0, x: 60 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  };
-
-  const fadeInUp = (i = 0) => ({
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.3, duration: 0.8, ease: 'easeOut' },
-    },
-  });
 
   return (
     <Box
@@ -91,14 +63,12 @@ const About: React.FC = () => {
 
       {/* Content */}
       <Grid container spacing={4} alignItems="center">
-        
         {/* Avatar + Icons */}
-        <Grid size={{xs:12, md:4}} textAlign="center">
+        <Grid size={{xs:12,md:4}} textAlign="center">
           <motion.div
-            variants={fadeInLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
             <Avatar
               alt="Kumaran V"
@@ -118,7 +88,7 @@ const About: React.FC = () => {
             {/* Social Icons */}
             <Box mt={2}>
               <IconButton
-                href="https://www.linkedin.com/in/kumaran-v-4b513b319/"
+                href="https://www.linkedin.com/in/kumaran-v-4b513b319?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                 target="_blank"
                 rel="noopener"
                 sx={{ color: theme.palette.primary.main }}
@@ -144,12 +114,12 @@ const About: React.FC = () => {
         </Grid>
 
         {/* Bio Content */}
-        <Grid size={{xs:12, md:8}}>
+        <Grid size={{xs:12,md:8}}>
           <motion.div
-            variants={fadeInRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
             <Paper
               elevation={4}
@@ -184,90 +154,93 @@ const About: React.FC = () => {
         </Grid>
       </Grid>
 
-      {/* Education Section */}
+      {/* --- Education Section --- */}
       <Box mt={8}>
-        <Grid container spacing={4}>
-          {/* Schooling */}
-          <Grid size={{xs:12, md:6}}>
-            <motion.div
-              variants={fadeInUp(0)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <Paper
-                elevation={4}
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: 'center',
-                  backgroundColor: theme.palette.background.paper,
-                  boxShadow: theme.palette.mode === 'dark'
-                    ? '0 4px 20px rgba(25, 118, 210, 0.15)'
-                    : '0 4px 12px rgba(0,0,0,0.08)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'translateY(-8px) scale(1.02)',
-                    boxShadow: theme.palette.mode === 'dark'
-                      ? '0 8px 30px rgba(25,118,210,0.3)'
-                      : '0 8px 24px rgba(0,0,0,0.15)',
-                    backgroundColor: theme.palette.action.hover,
-                  },
-                }}
-              >
-                <School sx={{ fontSize: 50, color: theme.palette.primary.main, mb: 2 }} />
-                <Typography variant="h6" fontWeight="bold" mb={1}>
-                  Schooling
-                </Typography>
-                <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
-                  Completed schooling at <strong>Gandhi Memorial Higher Secondary School</strong>, focusing on Mathematics, Physics, and Computer Science.
-                </Typography>
-              </Paper>
-            </motion.div>
-          </Grid>
+  <Grid container spacing={4}>
+    {/* Schooling Card */}
+    <Grid size={{xs:12,md:6}}>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <Paper
+          elevation={4}
+          sx={{
+            p: 4,
+            borderRadius: 4,
+            textAlign: 'center',
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: theme.palette.mode === 'dark'
+              ? '0 4px 20px rgba(25, 118, 210, 0.15)'
+              : '0 4px 12px rgba(0,0,0,0.08)',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer',
+            '&:hover': {
+              transform: 'translateY(-8px) scale(1.02)',
+              boxShadow: theme.palette.mode === 'dark'
+                ? '0 8px 30px rgba(25,118,210,0.3)'
+                : '0 8px 24px rgba(0,0,0,0.15)',
+              backgroundColor: theme.palette.action.hover,
+            },
+          }}
+        >
+          <School sx={{ fontSize: 50, color: theme.palette.primary.main, mb: 2 }} />
+          <Typography variant="h6" fontWeight="bold" mb={1}>
+            Schooling
+          </Typography>
+          <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
+  Completed schooling at <strong>Gandhi Memorial Higher Secondary School</strong>, focusing on Mathematics, Physics, and Computer Science.
+</Typography>
 
-          {/* Graduation */}
-          <Grid size={{xs:12, md:6}}>
-            <motion.div
-              variants={fadeInUp(1)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <Paper
-                elevation={4}
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: 'center',
-                  backgroundColor: theme.palette.background.paper,
-                  boxShadow: theme.palette.mode === 'dark'
-                    ? '0 4px 20px rgba(25, 118, 210, 0.15)'
-                    : '0 4px 12px rgba(0,0,0,0.08)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'translateY(-8px) scale(1.02)',
-                    boxShadow: theme.palette.mode === 'dark'
-                      ? '0 8px 30px rgba(25,118,210,0.3)'
-                      : '0 8px 24px rgba(0,0,0,0.15)',
-                    backgroundColor: theme.palette.action.hover,
-                  },
-                }}
-              >
-                <EmojiEvents sx={{ fontSize: 50, color: theme.palette.secondary.main, mb: 2 }} />
-                <Typography variant="h6" fontWeight="bold" mb={1}>
-                  Graduation
-                </Typography>
-                <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
-                  Completed my Bachelor's in <strong>Computer Science</strong> from <strong>IFET College of Engineering</strong>, focusing on Frontend Development and UI/UX Design.
-                </Typography>
-              </Paper>
-            </motion.div>
-          </Grid>
-        </Grid>
-      </Box>
+        </Paper>
+      </motion.div>
+    </Grid>
+
+    {/* Graduation Card */}
+    <Grid size={{xs:12,md:6}}>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <Paper
+          elevation={4}
+          sx={{
+            p: 4,
+            borderRadius: 4,
+            textAlign: 'center',
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: theme.palette.mode === 'dark'
+              ? '0 4px 20px rgba(25, 118, 210, 0.15)'
+              : '0 4px 12px rgba(0,0,0,0.08)',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer',
+            '&:hover': {
+              transform: 'translateY(-8px) scale(1.02)',
+              boxShadow: theme.palette.mode === 'dark'
+                ? '0 8px 30px rgba(25,118,210,0.3)'
+                : '0 8px 24px rgba(0,0,0,0.15)',
+              backgroundColor: theme.palette.action.hover,
+            },
+          }}
+        >
+          <EmojiEvents sx={{ fontSize: 50, color: theme.palette.secondary.main, mb: 2 }} />
+          <Typography variant="h6" fontWeight="bold" mb={1}>
+            Graduation
+          </Typography>
+          <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
+  Completed my Bachelor's in <strong>Computer Science</strong> from <strong>IFET College of Engineering</strong>, focusing on Frontend Development and UI/UX Design.
+</Typography>
+
+        </Paper>
+      </motion.div>
+    </Grid>
+  </Grid>
+</Box>
+
 
     </Box>
   );

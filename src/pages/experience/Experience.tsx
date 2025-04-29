@@ -44,45 +44,45 @@ const Experience: React.FC = () => {
   const theme = useTheme();
 
   return (
-<Box
-  id="experience"
-  sx={{
-    py: 10,
-    px: 3,
-    background: theme.palette.mode === 'dark'
-      ? 'linear-gradient(135deg, #111 0%, #1e1e1e 100%)'
-      : 'linear-gradient(135deg, #f9f9f9 0%, #fff 100%)',
-    color: theme.palette.text.primary,
-    transition: 'all 0.3s ease',
-    position: 'relative',
-    overflow: 'hidden',
-    // Keyframes defined here
-    '@keyframes shimmer': {
-      '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
-      '100%': { transform: 'translate(50%, 50%) rotate(360deg)' },
-    },
-  }}
->
-  {/* Spark shimmer layer */}
-  <Box
-    sx={{
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      width: 400,
-      height: 400,
-      background: `radial-gradient(
+    <Box
+      id="experience"
+      sx={{
+        py: 10,
+        px: 3,
+        background: theme.palette.mode === 'dark'
+          ? 'linear-gradient(135deg, #111 0%, #1e1e1e 100%)'
+          : 'linear-gradient(135deg, #f9f9f9 0%, #fff 100%)',
+        color: theme.palette.text.primary,
+        transition: 'all 0.3s ease',
+        position: 'relative',
+        overflow: 'hidden',
+        // Keyframes defined here
+        '@keyframes shimmer': {
+          '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+          '100%': { transform: 'translate(50%, 50%) rotate(360deg)' },
+        },
+      }}
+    >
+      {/* Spark shimmer layer */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          width: 400,
+          height: 400,
+          background: `radial-gradient(
         circle,
         ${theme.palette.primary.main}33 0%,
         transparent 70%
       )`,
-      animation: 'shimmer 10s linear infinite',
-      zIndex: 0,
-      filter: 'blur(60px)',
-      opacity: 0.3,
-      pointerEvents: 'none',
-    }}
-  />
+          animation: 'shimmer 10s linear infinite',
+          zIndex: 0,
+          filter: 'blur(60px)',
+          opacity: 0.3,
+          pointerEvents: 'none',
+        }}
+      />
 
       <Box
         sx={{
@@ -107,44 +107,50 @@ const Experience: React.FC = () => {
       <Grid container spacing={4} sx={{ position: 'relative', zIndex: 2 }}>
         {experienceList.map((exp, index) => (
           <Grid size={{ xs: 12, md: 6 }} key={index}>
-         <motion.div
-  style={{ position: 'relative', zIndex: 2 }}
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.3, delay: index * 0.2 }} // Decreased duration from 0.6 to 0.3
->
-  <Paper
-    elevation={6}
-    sx={{
-      p: 4,
-      borderLeft: `6px solid ${theme.palette.primary.main}`,
-      borderRadius: 3,
-      height: '100%',
-      backdropFilter: 'blur(4px)',
-      backgroundColor: theme.palette.mode === 'dark'
-        ? 'rgba(30,30,30,0.85)'
-        : 'rgba(255,255,255,0.9)',
-      boxShadow: theme.palette.mode === 'dark'
-        ? '0 10px 30px rgba(0, 0, 0, 0.5)'
-        : '0 10px 25px rgba(0, 0, 0, 0.1)',
-      transition: 'transform 0.4s ease, box-shadow 0.4s ease',
-      '&:hover': {
-        transform: 'translateY(-5px) scale(1.02)',
-        boxShadow: theme.palette.mode === 'dark'
-          ? '0 15px 35px rgba(0, 0, 0, 0.6)'
-          : '0 15px 30px rgba(0, 0, 0, 0.15)',
-      },
-    }}
-  >
-    <Typography variant="h6" fontWeight="bold" gutterBottom>
-      {exp.role}
-    </Typography>
-    <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-      {exp.company} — {exp.date}
-    </Typography>
-    <Typography variant="body2">{exp.description}</Typography>
-  </Paper>
-</motion.div>
+            <motion.div
+              style={{ position: 'relative', zIndex: 2 }}
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+                ease: [0.25, 0.1, 0.25, 1], // cubic-bezier for smooth motion
+              }}
+              viewport={{ once: true }}
+            >
+              <Paper
+                elevation={6}
+                sx={{
+                  p: 4,
+                  borderLeft: `6px solid ${theme.palette.primary.main}`,
+                  borderRadius: 3,
+                  height: '100%',
+                  backdropFilter: 'blur(4px)',
+                  backgroundColor: theme.palette.mode === 'dark'
+                    ? 'rgba(30,30,30,0.85)'
+                    : 'rgba(255,255,255,0.9)',
+                  boxShadow: theme.palette.mode === 'dark'
+                    ? '0 10px 30px rgba(0, 0, 0, 0.5)'
+                    : '0 10px 25px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.4s ease, box-shadow 0.4s ease',
+                  '&:hover': {
+                    transform: 'translateY(-5px) scale(1.02)',
+                    boxShadow: theme.palette.mode === 'dark'
+                      ? '0 15px 35px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255,255,255,0.05)'
+                      : '0 15px 30px rgba(0, 0, 0, 0.15), 0 0 8px rgba(0,0,0,0.05)',
+                  },
+                }}
+              >
+                <Typography variant="h6" fontWeight="bold" gutterBottom>
+                  {exp.role}
+                </Typography>
+                <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                  {exp.company} — {exp.date}
+                </Typography>
+                <Typography variant="body2">{exp.description}</Typography>
+              </Paper>
+            </motion.div>
+
 
           </Grid>
         ))}
